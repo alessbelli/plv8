@@ -29,7 +29,7 @@ plv8_config.h plv8.so: v8
 
 $(AUTOV8_DEPOT_TOOLS):
 	mkdir -p build
-	cd build; git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+	cd build; git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git; cd depot_tools; git checkout 46541b4996f25b706146148331b9613c8a787e7e; cd ..
 
 $(AUTOV8_DIR): $(AUTOV8_DEPOT_TOOLS)
 	cd build; fetch v8; cd v8; git checkout $(AUTOV8_VERSION); gclient sync ; cd build/config ; git cherry-pick 4287a0d364541583a50cc91465330251460d489a ; cd ../.. ; tools/dev/v8gen.py $(PLATFORM) -- $(V8_OPTIONS)
